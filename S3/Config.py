@@ -32,6 +32,7 @@ class Config(object):
     host_bucket = "%(bucket)s.s3.amazonaws.com"
     kms_key = ""    #can't set this and Server Side Encryption at the same time
     # simpledb_host looks useless, legacy? to remove?
+    api_endpoint_path = ""
     simpledb_host = "sdb.amazonaws.com"
     cloudfront_host = "cloudfront.amazonaws.com"
     verbosity = logging.WARNING
