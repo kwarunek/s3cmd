@@ -162,6 +162,12 @@ class http_connection(object):
         self.hostname = parsed_hostname.hostname
         self.port = parsed_hostname.port
 
+        if parsed_hostname.path and parsed_hostname.path != '/':
+            self.path = parsed_hostname.path.rstrip('/')
+            debug(u'endpoint path set to %s', self.path)
+        else:
+            self.path = None
+
         if not cfg.proxy_host:
             if ssl:
                 self.c = http_connection._https_connection(hostname)
@@ -178,6 +184,7 @@ class http_connection(object):
                 debug(u'proxied HTTPConnection(%s, %s)', cfg.proxy_host, cfg.proxy_port)
             self.c.set_tunnel(self.hostname, self.port)
             debug(u'tunnel to %s, %s', self.hostname, self.port)
+
 
 
 class ConnMan(object):
